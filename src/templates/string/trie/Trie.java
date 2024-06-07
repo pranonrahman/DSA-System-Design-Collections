@@ -40,6 +40,27 @@ public class Trie {
         return current != null && current.isWord;
     }
 
+    public String getRootWord(String word) {
+        TrieNode current = root;
+        StringBuilder sb = new StringBuilder();
+
+        for (char ch : word.toCharArray()) {
+            sb.append(ch);
+
+            current = current.children[ch - 'a'];
+
+            if (current == null) {
+                return null;
+            }
+
+            if(current.isWord) {
+                return sb.toString();
+            }
+        }
+
+        return sb.toString();
+    }
+
     public TrieNode getRoot() {
         return this.root;
     }
